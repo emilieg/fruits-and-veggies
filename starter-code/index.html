@@ -1,5 +1,6 @@
+
 <!DOCTYPE html>
-<html>
+<html ng-app="FruitnVeggie">
     <head>
         <title>Fruit and Veggies</title>
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
@@ -7,22 +8,42 @@
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular.min.js"></script>
         <script src="js/fruit_and_veggies_test.js"></script>
+        <script src="js/ui-bootstrap-custom-tpls.js"></script>
         <script src="js/app.js"></script>
     </head>
-    <body>
+    <body ng-controller="fruitnveggie">
         <div class="container">
             <h1>Fruit and Veggies</h1>
             <div class="row">
                 <div class="col-sm-4">
-                    col 1
+                    <h1>Fruits</h1>
+                        <ul class="list-group">
+                            <li class="list-group-item" ng-repeat="food in myFruit track by $index" ng-class="{'red-text': redFruit[$index]}">{{food}}<button class="btn btn-primary" ng-click="addFruitToCombo(food)"><span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span></button></li>    
+                        </ul>
                 </div>
                 <div class="col-sm-4">
-                    col 2
+                    <h2>Pool</h2>
+                        <ul class="list-group">
+                            <li ng-repeat="food in combo track by $index" class="list-group-item" ><button class="btn btn-primary pull-left" ng-click="addToFruits(food)"><span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span></button>{{food}}<button class="btn btn-primary pull-right" ng-click="addToVeggies(food)"><span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span></button></li>
+                        </ul>
                 </div>
                 <div class="col-sm-4">
-                    col 3
-                </div>                        
+                    <h1>Veggies</h1>
+                        <ul class="list-group">
+                            <li class="list-group-item" ng-repeat="food in myVeg track by $index" ng-class="{'red-text': redVeg[$index]}"><button class="btn btn-primary" ng-click="addVegToCombo(food)"><span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span></button>{{food}}</li>    
+                        </ul>
+                </div>                     
             </div>
+            <div>
+            <script type="text/ng-template" id="alert.html">
+                <div class="alert" style="background-color:#fa39c3;color:white" role="alert">
+                <div ng-transclude></div>
+                </div>
+            </script>
+
+  <uib-alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)" ng-show="win">{{alert.msg}}</uib-alert>
+<!--   <uib-alert template-url="alert.html">A happy alert!</uib-alert> -->
+</div>
         </div>
     </body>
 </html>

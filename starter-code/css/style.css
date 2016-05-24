@@ -1,1 +1,19 @@
 /* file for your css */
+/* file for your css */
+button {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+li {
+  text-align: center;
+
+}
+.red-text {
+  color: red;
+  font-weight: bold;
+}
+
+
+.list-group-item {
+  padding-bottom: 25px;
+}
